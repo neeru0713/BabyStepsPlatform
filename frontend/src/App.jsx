@@ -1,18 +1,17 @@
-import React from 'react'
-
-import './App.css'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
-
-
   return (
-    <div className='text-green-800'>
-     
-       
-      <h1>Vite + React</h1>
-      </div>
-  
-  )
+    <div>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
