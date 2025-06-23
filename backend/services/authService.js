@@ -1,9 +1,9 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+require("dotenv").config();
 const jwtSecret = process.env.JWT_SECRET;
-
+console.log("jwtSecret in login : ", jwtSecret);
 const registerUser = async ({ email, username, password }) => {
   if (!email || !username || !password) {
     throw new Error("All fields are required");
@@ -35,7 +35,7 @@ const loginUser = async (email, password) => {
     throw new Error("Invalid credentials");
   }
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ id: user._id }, jwtSecret, {
     expiresIn: "1d",
   });
 

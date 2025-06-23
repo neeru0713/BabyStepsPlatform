@@ -27,8 +27,8 @@ const Login = () => {
 
       const res = await response.json();
       console.log("......res", res);
-      localStorage.setItem("user", JSON.stringify(res.user));
-      localStorage.setItem("token", JSON.stringify(res.token));
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", JSON.stringify(res.data.token));
     } catch (error) {
       console.error("Sign In Error", error.message);
     }

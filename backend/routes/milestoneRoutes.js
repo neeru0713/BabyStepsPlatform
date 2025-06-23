@@ -5,6 +5,7 @@ const {
   getAll,
   update,
   remove,
+  getOne,
 } = require("../controllers/milestoneController");
 const auth = require("../middleware/authMiddleware");
 
@@ -13,4 +14,5 @@ router.post("/", create);
 router.get("/", getAll);
 router.put("/:id", update);
 router.delete("/:id", remove);
+router.get("/:id", getOne);
 module.exports = router;
