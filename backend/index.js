@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes.js");
 const milestoneRoutes = require("./routes/milestoneRoutes.js")
+const tipsRoutes = require("./routes/tipsRoutes.js");
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const app = express();
@@ -17,6 +18,8 @@ app.get("/", (req,res) => {
 })
 app.use("/api/auth", authRoutes);
 app.use("/api/milestones", milestoneRoutes);
+app.use("/api/tips", tipsRoutes);
+
 
 mongoose
   .connect(

@@ -1,8 +1,8 @@
-const tipService = require("../services/tipService");
+const tipsService = require("../services/tipsService");
 
 exports.add = async (req, res) => {
   try {
-    const tip = await tipService.add({
+    const tip = await tipsService.add({
       milestoneId: req.params.id,
       ...req.body,
     });
@@ -14,7 +14,7 @@ exports.add = async (req, res) => {
 
 exports.getByMilestone = async (req, res) => {
   try {
-    const tips = await tipService.getByMilestone(req.params.id);
+    const tips = await tipsService.getByMilestone(req.params.id);
     res.json(tips);
   } catch (err) {
     res.status(400).json({ error: err.message });

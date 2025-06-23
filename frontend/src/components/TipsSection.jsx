@@ -12,7 +12,7 @@ export default function TipsSection({ tips, onAddTip }) {
   return (
     <div className="mt-6 bg-white p-4 rounded-xl shadow">
       <h3 className="text-xl font-bold mb-2">💡 Community Tips</h3>
-      {tips.map((t, index) => (
+      {tips?.map((t, index) => (
         <div key={index} className="border-b py-2">
           <p className="text-gray-800">{t.text}</p>
           <span className="text-sm text-gray-500">– {t.contributor}</span>
