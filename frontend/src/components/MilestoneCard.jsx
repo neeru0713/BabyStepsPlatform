@@ -6,7 +6,7 @@ export default function MilestoneCard({
   onEdit,
   onDelete,
   onViewTips,
-  onShare, // ✅ Renamed for consistency
+  onShare, 
 }) {
   return (
     <div className="bg-white p-4 rounded-2xl shadow-md mb-4">
@@ -39,7 +39,7 @@ export default function MilestoneCard({
           <FaTrashAlt /> Delete
         </button>
         <button
-          onClick={onShare} // ✅ Matches the prop from parent
+          onClick={onShare} 
           className="text-purple-600 flex items-center gap-1"
         >
           <FaShareAlt /> Share

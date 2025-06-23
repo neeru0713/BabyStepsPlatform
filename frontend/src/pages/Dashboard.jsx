@@ -14,9 +14,7 @@ export default function UserMilestoneDashboard() {
   const [selectedMilestoneId, setSelectedMilestoneId] = useState(null);
   const navigate = useNavigate();
   const currentWeek = 16;
-  // const [user, setUser] = useState(null);
 
-  // ✅ Only one declaration of openShareModal
   const openShareModal = (milestone) => {
     setSelectedMilestoneId(milestone._id);
     setShowModal(true);

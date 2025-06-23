@@ -22,7 +22,7 @@ exports.getAllForUser = async (req, res) => {
           { userId: userId },
           { sharedWith: userId }
         ]
-      })
+      }).sort({ date: -1 });
       res.json(milestones);
     } catch (err) {
       res.status(500).json({ error: err.message });

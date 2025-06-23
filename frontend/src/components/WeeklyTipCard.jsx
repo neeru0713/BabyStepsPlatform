@@ -1,4 +1,4 @@
-// components/WeeklyTipCard.jsx
+
 import React from "react";
 
 export default function WeeklyTipCard({ week }) {
