@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
     if (name === "email") {
@@ -17,23 +20,32 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://babystepsplatform.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const res = await response.json();
       console.log("......res", res);
-
-
       localStorage.setItem("user", JSON.stringify(res.user));
       localStorage.setItem("token", JSON.stringify(res.token));
-
+      
+      if (!res.user) {
+        toast.error(res.message || "Login failed ");
+      }
+      else {
+        toast.success("Login successful");
+        navigate("/");
+      }
 
     } catch (error) {
+      toast.error(error.message || "Login failed ");
       console.error("Sign In Error", error.message);
     }
   };

@@ -12,7 +12,7 @@ export default function EditMilestone() {
     const fetchMilestone = async () => {
       const token = localStorage.getItem("token")?.replace(/^"|"$/g, "");
       const res = await axios.get(
-        `http://localhost:8080/api/milestones/${id}`,
+        `https://babystepsplatform.onrender.com/api/milestones/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -29,7 +29,7 @@ export default function EditMilestone() {
   const handleSave = async (updatedMilestone) => {
     const token = localStorage.getItem("token")?.replace(/^"|"$/g, "");
     await axios.put(
-      `http://localhost:8080/api/milestones/${id}`,
+      `https://babystepsplatform.onrender.com/api/milestones/${id}`,
       updatedMilestone,
       {
         headers: { Authorization: `Bearer ${token}` },

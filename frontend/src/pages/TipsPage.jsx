@@ -14,14 +14,16 @@ export default function TipsPage() {
     const fetchData = async () => {
       try {
         const milestoneRes = await axios.get(
-          `http://localhost:8080/api/milestones/${id}`,
+          `https://babystepsplatform.onrender.com/milestones/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         setMilestone(milestoneRes.data);
 
-        const tipsRes = await axios.get(`http://localhost:8080/api/tips/${id}`);
+        const tipsRes = await axios.get(
+          `https://babystepsplatform.onrender.com/api/tips/${id}`
+        );
         setTips(tipsRes.data);
       } catch (err) {
         console.error("Error loading data", err);
@@ -34,7 +36,7 @@ export default function TipsPage() {
     if (!newTip.trim()) return;
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/tips/${id}`,
+        `https://babystepsplatform.onrender.com/tips/${id}`,
         { text: newTip },
         {
           headers: { Authorization: `Bearer ${token}` },

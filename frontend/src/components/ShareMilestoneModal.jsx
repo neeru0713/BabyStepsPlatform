@@ -8,9 +8,12 @@ export default function ShareMilestoneModal({ milestoneId, onClose }) {
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem("token")?.replace(/^"|"$/g, "");
-      const res = await axios.get("http://localhost:8080/api/users/all", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        "https://babystepsplatform.onrender.com/api/users/all",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setUsers(res.data);
     };
     fetchUsers();
@@ -18,7 +21,7 @@ export default function ShareMilestoneModal({ milestoneId, onClose }) {
   const handleShare = async () => {
     const token = localStorage.getItem("token")?.replace(/^"|"$/g, "");
     await axios.post(
-      `http://localhost:8080/api/milestones/${milestoneId}/share`,
+      `https://babystepsplatform.onrender.com/api/milestones/${milestoneId}/share`,
       { userId: selectedUser },
       { headers: { Authorization: `Bearer ${token}` } }
     );

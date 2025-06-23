@@ -1,47 +1,52 @@
 import React, { useState } from "react";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    if (name === "email") {
-      setEmail(value);
-    } else if (name === "username") {
-      setUsername(value); 
-    } else if (name === "password") {
-      setPassword(value);
-    }
+    if (name === "email") setEmail(value);
+    else if (name === "username") setUsername(value);
+    else if (name === "password") setPassword(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, username, password }),
-      });
+      const response = await fetch(
+        "https://babystepsplatform.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, username, password }),
+        }
+      );
 
       const res = await response.json();
-      console.log("......res", res);
+
       if (res.user) {
         localStorage.setItem("user", JSON.stringify(res.user));
+        toast.success("Registration successful ");
+        navigate("/login")
       } else {
-        alert(res.message || "Registration failed");
+        toast.error(res.message || "Registration failed ");
       }
     } catch (error) {
       console.error("Sign Up Error:", error.message);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
   return (
     <div className="flex flex-col">
+      <ToastContainer />
       <h1 className="text-blue-500 font-bold text-center mt-8 text-3xl">
         Register
       </h1>
