@@ -4,5 +4,6 @@ const milestoneSchema = new mongoose.Schema({
   title: String,
   date: Date,
   notes: String,
+  sharedWith: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 module.exports = mongoose.model("Milestone", milestoneSchema);

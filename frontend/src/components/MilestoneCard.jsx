@@ -1,10 +1,12 @@
-import { FaEdit, FaTrashAlt, FaComments } from "react-icons/fa";
+import { FaEdit, FaTrashAlt, FaComments, FaShareAlt } from "react-icons/fa";
 import React from "react";
+
 export default function MilestoneCard({
   milestone,
   onEdit,
   onDelete,
   onViewTips,
+  onShare, // ✅ Renamed for consistency
 }) {
   return (
     <div className="bg-white p-4 rounded-2xl shadow-md mb-4">
@@ -17,7 +19,7 @@ export default function MilestoneCard({
       {milestone.notes && (
         <p className="text-gray-700 my-2">📝 {milestone.notes}</p>
       )}
-      <div className="flex gap-4 mt-2">
+      <div className="flex gap-4 mt-2 flex-wrap">
         <button
           onClick={onViewTips}
           className="text-blue-600 hover:underline flex items-center gap-1"
@@ -35,6 +37,12 @@ export default function MilestoneCard({
           className="text-red-600 flex items-center gap-1"
         >
           <FaTrashAlt /> Delete
+        </button>
+        <button
+          onClick={onShare} // ✅ Matches the prop from parent
+          className="text-purple-600 flex items-center gap-1"
+        >
+          <FaShareAlt /> Share
         </button>
       </div>
     </div>

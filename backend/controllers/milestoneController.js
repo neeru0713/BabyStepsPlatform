@@ -1,5 +1,5 @@
 const milestoneService = require("../services/milestoneService");
-
+const Milestone = require("../models/Milestone")
 exports.create = async (req, res) => {
     try {
       console.log("create cntoler")
@@ -13,15 +13,21 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.getAll = async (req, res) => {
-  try {
-    const data = await milestoneService.getAll(req.user.id);
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-  
+// Get milestones created by user or shared with user
+exports.getAllForUser = async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const milestones = await Milestone.find({
+        $or: [
+          { userId: userId },
+          { sharedWith: userId }
+        ]
+      })
+      res.json(milestones);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
 
 exports.getOne = async (req, res) => {
   try {
@@ -49,5 +55,18 @@ exports.remove = async (req, res) => {
     res.sendStatus(204);
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+};
+
+exports.shareWithUser = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const milestoneId = req.params.id;
+
+    await milestoneService.shareWithUser(milestoneId, userId);
+
+    res.json({ message: "Milestone shared successfully" });
+  } catch (err) {
+    res.status(err.status || 500).json({ message: err.message });
   }
 };

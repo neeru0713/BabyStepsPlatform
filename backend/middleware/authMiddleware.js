@@ -1,17 +1,15 @@
 const jwt = require("jsonwebtoken");
-
+require("dotenv").config();
+const jwtSecret = process.env.JWT_SECRET;
+console.log("jwtSecret in auth : ", jwtSecret);
 module.exports = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  const token = authHeader?.split(" ")[1];
-
-  if (!token) return res.status(401).json({ message: "Token missing" });
-
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.sendStatus(401);
   try {
-    const user = jwt.verify(token, process.env.JWT_SECRET);
+    const user = jwt.verify(token, jwtSecret);
     req.user = user;
     next();
-  } catch (err) {
-    console.error("JWT error:", err.message); // <- log this!
-    res.status(403).json({ message: "Invalid token" });
+  } catch {
+    res.sendStatus(403);
   }
 };

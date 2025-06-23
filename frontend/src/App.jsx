@@ -7,11 +7,13 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import EditMilestone from "./components/EditMilestone";
+import ShareMilestoneModal from "./components/ShareMilestoneModal";
 
 function App() {
   return (
     <Router>
       <Navbar />
+      
       <div className="min-h-screen bg-gray-50 px-4">
         <Routes>
           <Route path="/" element={<Dashboard />} />
@@ -20,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/milestone/:id/edit" element={<EditMilestone />} />
+          <Route path="/shareMilestoneModal" element={<ShareMilestoneModal/>}/>
         </Routes>
       </div>
     </Router>

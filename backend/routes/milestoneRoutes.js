@@ -6,13 +6,18 @@ const {
   update,
   remove,
   getOne,
+  getAllForUser,
+  shareWithUser,
 } = require("../controllers/milestoneController");
 const auth = require("../middleware/authMiddleware");
 
 router.use(auth);
 router.post("/", create);
-router.get("/", getAll);
+router.get("/", getAllForUser);
 router.put("/:id", update);
 router.delete("/:id", remove);
 router.get("/:id", getOne);
+router.post("/share/:id", shareWithUser);
+
+
 module.exports = router;
