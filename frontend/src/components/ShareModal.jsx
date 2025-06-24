@@ -39,7 +39,7 @@ export default function ShareModal({ milestoneId, onClose }) {
         onChange={(e) => setSelectedUserId(e.target.value)}
       >
         <option value="">Select user</option>
-        {users.map((u) => (
+        {users?.map((u) => (
           <option key={u._id} value={u._id}>
             {u.name} ({u.email})
           </option>

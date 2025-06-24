@@ -59,7 +59,7 @@ export default function TipsPage() {
 
       <div className="mt-6">
         <h3 className="text-xl font-semibold mb-2">💡 Community Tips</h3>
-        {tips.map((tip, i) => (
+        {tips?.map((tip, i) => (
           <div key={i} className="bg-gray-100 rounded p-3 mb-2">
             {tip.text}
           </div>

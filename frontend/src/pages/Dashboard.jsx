@@ -112,7 +112,7 @@ export default function UserMilestoneDashboard() {
 
       {view === "grid" ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-          {milestones.map((m) => (
+          {milestones?.map((m) => (
             <MilestoneCard
               key={m._id}
               milestone={m}
