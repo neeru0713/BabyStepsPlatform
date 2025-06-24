@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Navbar />
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className="min-h-screen bg-gray-50 px-4">
+      <div className="h-[90vh] bg-gray-50 px-4">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/add" element={<AddMilestone />} />
