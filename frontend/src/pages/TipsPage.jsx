@@ -35,7 +35,7 @@ export default function TipsPage() {
     if (!newTip.trim()) return;
     try {
       const res = await axios.post(
-        `https://babystepsplatform.onrender.com/tips/${id}`,
+        `https://babystepsplatform.onrender.com/api/tips/${id}`,
         { text: newTip },
         {
           headers: { Authorization: `Bearer ${token}` },
