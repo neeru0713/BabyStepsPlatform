@@ -14,13 +14,12 @@ export default function TipsPage() {
     const fetchData = async () => {
       try {
         const milestoneRes = await axios.get(
-          `https://babystepsplatform.onrender.com/milestones/${id}`,
+          `https://babystepsplatform.onrender.com/api/milestones/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         setMilestone(milestoneRes.data);
-
         const tipsRes = await axios.get(
           `https://babystepsplatform.onrender.com/api/tips/${id}`
         );

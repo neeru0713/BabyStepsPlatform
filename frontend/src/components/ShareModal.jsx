@@ -23,7 +23,7 @@ export default function ShareModal({ milestoneId, onClose }) {
   const handleShare = async () => {
     const token = localStorage.getItem("token")?.replace(/^"|"$/g, "");
     await axios.post(
-      `https://babystepsplatform.onrender.com/milestones/share/${milestoneId}`,
+      `https://babystepsplatform.onrender.com/api/milestones/share/${milestoneId}`,
       { userId: selectedUserId },
       { headers: { Authorization: `Bearer ${token}` } }
     );
